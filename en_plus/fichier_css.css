@@ -5,19 +5,31 @@ main {
     margin: auto;
     max-width: 900px;
 	border: solid #333;/*permet de faire un contoure*/
+	display: flex; /* Utiliser flexbox pour aligner horizontalement les éléments */
+    flex-wrap: wrap; /* Permettre le retour à la ligne si nécessaire */
 }
+
+
+/**********************************************************
+ * Header
+ **********************************************************/
+ 
 header {
-	height: 170px;
-    color: white;/*mettre les ecriture en blanc*/
-    background-color: #333;/*mettre le fond en noir*/
+	width: 100%; /* Étendre la largeur du header sur toute la largeur du main */
+    height: 170px;
+    color: white;
+    background-color: #333;
+    display: flex; /* Utiliser flexbox pour aligner horizontalement les éléments */
+    justify-content:  space-between; /* Distribuer les éléments sur l'axe horizontal */
+    align-items: center; /* Centrer verticalement les éléments */
 }
-.titre {
-    margin-left: 20px;
-    margin-top: 3em;
-	float:left;/*permet de mettre le titre a gauche*/
-}  
-.adresse{
-	line-height: 1em;/*permet de placer l'adresse a une distance proportionnelle du texte  */
+.partie_gauche_header {
+    float: left;
+    display: flex;
+    align-items: left; /* Aligner les éléments verticalement */
+    width: 50%;
+    box-sizing: border-box;
+    padding: 0px;
 }
 .photo {
     margin-left: 1%;
@@ -25,7 +37,57 @@ header {
     width: 130px;/*definie la taille de l'image*/
     height: 130px;
     overflow: hidden;
-	float:left;/*permet de mettre la photo a gauche*/
+	float: left;/*permet de mettre la photo a gauche*/
+}
+.titre {
+	float: right; /* Aligner le titre a droite  */
+}
+.classe{
+	max-width: max-content; /* Limiter la largeur maximale au contenu */
+    white-space: nowrap; /* Empêcher le texte de se retourner à la ligne */
+    color: white;/*mes le texte en blanc*/
+    font-weight: bold;/* mes le texte en gras*/
+    letter-spacing: .1rem;
+	margin-bottom: 10px;
+}
+.partie_droite_header {
+    float: right;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.droite {
+	float: right; /* Déplacer la section droite à droite */
+    display: flex; /* Utiliser flexbox pour empiler verticalement les éléments */
+    flex-direction: column; /* Empiler verticalement les éléments */
+}
+
+.droite img {
+    margin-right: 10px; /* Ajouter un peu d'espace entre les images et le texte */
+	vertical-align: middle; /* Aligner verticalement l'image */
+}
+
+.droite p {
+    margin-left: 10px; /* Ajouter un peu d'espace entre le texte et les images */
+}
+
+
+.adresse{
+	line-height: 1em;/*permet de placer l'adresse a une distance proportionnelle du texte  */
+}
+
+
+/**********************************************************
+ * CORPS
+ **********************************************************/
+
+
+.partie_gauche, .partie_droite {
+    width: calc(50% - 1px); /* Prendre 50% de la largeur avec une soustraction de 1px pour compenser la bordure */
+    box-sizing: border-box; /* Inclure la bordure et le padding dans la largeur totale */
+    padding: 20px; /* Ajouter de l'espace autour du contenu */
 }
 h1{
     color: #white;/* mes le texte en blanc*/
@@ -39,32 +101,13 @@ h1{
     letter-spacing: .1rem;
     font-size: 18px;/*definit la taille de l'ecriture*/
 }
-.droite{
-	float:right;/*place  le section a droite*/
-    margin-top: 2em;/*definit l'espace en haut */ 
-
-}
-.partie_droite{
-    background-color: white;/*permet de mettre le fond en blanc*/
-    float: right;/*permet de mettre la section a droit*/
-    width: 400px;/*permet de mettre la section 400px a gauche */
-}
-.partie_gauche{
-    background-color: white;/* permet de mettre le couleur de fond en blanc*/
-    float: left;
-    width: 400px;
-}
 .alignement {
     width: 40%;/*permet de fenir la largeur du bloc alignement */
     margin-left: 10%
 }
-.classe{
-    color: red;/*mes le texte en rouge*/
-    font-weight: bold;/* mes le texte en gras*/
-    letter-spacing: .1rem;
-}
+
 hr.ligne{
- border-top: 2px solid #c31313;/*permet de faire un ligne continu de l'argeur 2px et de couleur rouge*/
+ border-top: 2px solid tan;/*permet de faire un ligne continu de l'argeur 2px et de couleur beige*/
  width: 90%;
  margin-top: .8rem;/* de la placer a 8rem du top*/
  margin-bottom: 1rem;
@@ -77,14 +120,27 @@ hr.ligne{
     margin-left: 10%; /*permet de mettre un espace a gauche des div de 10% */
 }
 
-.reseaux{
-    margin-left: 10%;/*permet de mettre la section reseaux sociaux a 10% de la marge gauche */
-}
+
 .jauge {
-	border: 2px solid #000; /*permet de faire le contour de la jauge et de mettre le contoure en rouge*/
-    background-color: red;/*permet de mettre l'interieur de la jauge en blanc*/
+	border: 2px solid #000; /*permet de faire le contour de la jauge et de mettre le contoure en beige*/
     width: 300px;/*permet de faire la longeur de la bare*/
     height: 20px; /*permet de definir lalargeur des jauge*/
+	border-radius: 10px;
+}
+.jauge progress {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px; /* pour arrondir les coins de la barre de progression */
+    background-color: tan; /* couleur de fond de la barre de progression */
+}
+.jauge progress::-webkit-progress-value {
+    background-color: tan; /* pour définir explicitement la couleur de remplissage pour Chrome et Safari */
+	border-radius: 8px;
+}
+
+.jauge progress::-moz-progress-bar {
+    background-color: tan; /* pour définir explicitement la couleur de remplissage pour Firefox */
+	border-radius: 8px;
 }
 .info{
     width: 20px; /* permet de definir la largeur du bloc*/
@@ -94,13 +150,9 @@ hr.ligne{
     margin-top: 20px;/*permet de placer la section .comp  20px en dessous de h2 (qui est le titre des mes competance)*/
 }
 strong{
-    color: red;/*mes le texte en rouge*/
-    text-decoration: underline; /*permet de mettre un ligne sous le texte*/
+    color: tan;/*mes le texte en beige*/
 }
 
-.interet{/*permet de mettre la section centre d'interet a 10% de la marge gauche */
-    margin-left: 10%;
-}
 
 .lmtpage {
     display: flex;/*permet la capaciter du bloc a etre flexible*/
